@@ -1,0 +1,23 @@
+{
+  "name": "compatible",
+  "description": "commmon compatible tool",
+  "license": "MIT",
+  "version": "1.0.0",
+  "keywords": [
+    "compatible"
+  ],
+  "author": {
+    "name": "fwg",
+    "email": "adf0001@163.com"
+  },
+  "homepage": "https://github.com/adf0001/compatible#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adf0001/compatible.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adf0001/compatible/issues",
+    "email": "adf0001@163.com"
+  },
+  "licenses": "MIT"
+}

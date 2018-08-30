@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+
+<script src='../all.bundle.js'></script>
+
+</head>
+<body onload="onBodyLoad()">
+
+<div id=divTest>click here</div>
+</body>
+</html>
+
+<script>
+
+//Edge(IE11.0.56) confliction: if we name the variable to "addEventListener"
+//a. open the Developer Tools (press F12), then load this page, then everything is ok;
+//b. close and re-open the Developer Tools, then get a lot of error messages, even after refreshing the page.
+
+var _addEventListener= require("addEventListener");
+
+function onBodyLoad(){
+	_addEventListener( document.getElementById("divTest"), "click", function(evt){alert( [evt, "click" ] );} );
+}
+
+</script>
