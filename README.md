@@ -1,6 +1,6 @@
 # compatible
 
-commmon compatible tool
+common compatible tool
 
 ## install
 
