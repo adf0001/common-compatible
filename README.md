@@ -1,10 +1,10 @@
-# compatible
+# common-compatible
 
 common compatible tool
 
 ## install
 
-`npm install compatible`
+`npm install common-compatible`
 
 ## document
 
