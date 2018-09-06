@@ -1,4 +1,4 @@
-require=(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({"addEventListener":[function(require,module,exports){
+require=(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({"addEventListener":[function(require,module,exports){
 
 //addEventListener()
 module.exports= function( thisObject, type, listener /*, options*/ ){
@@ -11,38 +11,26 @@ module.exports= function( thisObject, type, listener /*, options*/ ){
 
 
 //bind()
-module.exports= function( func /*, bindThisObject ,...*/ ){
+module.exports= function( func, bindThisObject /*,...*/ ){
+
+	if( func.bind ) return func.bind.apply(func,Array.prototype.slice.call(arguments,1));
 	
 	//refer: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind
-	if (!Function.prototype.bind) {
-	  Function.prototype.bind = function(oThis) {
-	    if (typeof this !== 'function') {
-	      // closest thing possible to the ECMAScript 5
-	      // internal IsCallable function
-	      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-	    }
-
-	    var aArgs   = Array.prototype.slice.call(arguments, 1),
-	        fToBind = this,
-	        fNOP    = function() {},
-	        fBound  = function() {
-	          return fToBind.apply(this instanceof fNOP
-	                 ? this
-	                 : oThis,
-	                 aArgs.concat(Array.prototype.slice.call(arguments)));
-	        };
-
-	    if (this.prototype) {
-	      // Function.prototype doesn't have a prototype property
-	      fNOP.prototype = this.prototype; 
-	    }
-	    fBound.prototype = new fNOP();
-
-	    return fBound;
-	  };
-	}
 	
-	return func.bind.apply(func,Array.prototype.slice.call(arguments,1));
+	//alert("bind compatible");
+	
+	if (typeof func !== 'function') {
+		throw new Error('bind not-callable object');
+	}
+
+	var aArgs   = Array.prototype.slice.call(arguments, 2);
+	
+	return function() {
+		return func.apply(
+			(this instanceof Function) ? this : bindThisObject,
+			aArgs.concat(Array.prototype.slice.call(arguments))
+		);
+	};
 };
 
 

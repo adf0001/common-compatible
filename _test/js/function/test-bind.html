@@ -16,16 +16,25 @@
 
 var _bind= require("bind");
 
-function func1(){
-	alert(this.aaa);
+function func1(p1,p2){
+	alert("this.aaa="+this.aaa+", p1="+p1+", p2="+p2);
 }
 
 function divTest_onClick(){
 	var o={aaa:111};
 	
 	var func2= _bind(func1,o);
+	func2(222);
+	alert( new func2(222) );
+	console.log( new func2(222) );
 	
-	func2();
+	var func3= _bind(func1,o,333);
+	func3(444);
+	
+	//check enumerable
+	for(var i in func3 ){
+		alert(i);
+	}
 }
 
 </script>
