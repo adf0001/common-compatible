@@ -24,3 +24,10 @@ If a method has a `this` object, it should be defined as:
 
 `function( thisObject, arg1, arg2, ... )`
 
+### property convention
+
+If a property has a `this` object, it's get/set method should be defined as:
+
+get<Object><Property>= `function( thisObject )`
+set<Object><Property>= `function( thisObject, value )`
+

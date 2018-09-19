@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+
+<script src='../all.bundle.js'></script>
+
+</head>
+<body onload="onBodyLoad()">
+
+<div id=divTest style='position:absolute;left:200px;top:100px;border:1px solid green;width:100px;height:100px;cursor:default;'>click here</div>
+</body>
+</html>
+
+<script>
+
+
+var getEventOffsetXy= require("getEventOffsetXy");
+
+function onDivClick(evt)
+{
+	console.log( getEventOffsetXy( evt || window.event) );
+}
+
+function onBodyLoad(){
+	
+	document.getElementById("divTest").onclick= onDivClick;
+}
+
+</script>
